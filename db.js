@@ -28,7 +28,8 @@ const dbConfig = {
 // Validación de variables requeridas
 for (const [key, value] of Object.entries(dbConfig)) {
   if (!value) {
-    console.error(`❌ La variable de entorno ${key} no está definida.`);
+    console.error(`❌ La variable de entorno ${key} no está definida o está vacía.`);
+    console.error('Valor actual:', value);
     process.exit(1); // Detiene la app si falta algo
   }
 }
