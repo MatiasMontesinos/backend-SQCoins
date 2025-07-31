@@ -7,8 +7,8 @@ const dbConfig = {
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQLDATABASE,
-  port: process.env.MYSQLPORT ? Number(process.env.MYSQLPORT) : undefined,
+  database: process.env.MYSQL_DATABASE,  // Cambiado aquí
+  port: process.env.MYSQLPORT ? Number(process.env.MYSQLPORT) : 3306, // puerto por defecto 3306 si no definido
   multipleStatements: true
 };
 
