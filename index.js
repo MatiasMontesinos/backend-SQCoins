@@ -13,7 +13,7 @@ const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
-
+const app = express();
 app.use(cors(corsOptions)); // Usar CORS en todas las rutas
 
 
@@ -25,7 +25,7 @@ const principalRoutes = require('./principal');
 const buscaminasRoutes = require('./buscaminas');
 
 
-const app = express();
+
 const frontendPath = path.join(__dirname, '../frontend');
 
 // Middleware
