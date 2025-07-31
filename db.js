@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Detectar el nombre correcto de la base de datos
-const databaseName = process.env.MYSQL_DATABASE || process.env.MYSQLDATABASE;
+const databaseName = process.env.MYSQL_DATABASE || process.env.MYSQLDATABASE || 'railway';
 
 // Mostrar las variables de entorno para debug
 console.log('🔍 Variables de entorno recibidas:', {
@@ -17,11 +17,11 @@ console.log('🔍 Variables de entorno recibidas:', {
 
 // Configuración de conexión
 const dbConfig = {
-  host: process.env.MYSQLHOST,
-  user: process.env.MYSQLUSER,
-  password: process.env.MYSQLPASSWORD,
-  database: databaseName,
-  port: process.env.MYSQLPORT ? Number(process.env.MYSQLPORT) : 3306,
+  host: process.env.MYSQLHOST || 'mysql.railway.internal',  // Usamos el valor predeterminado en caso de que no se pase la variable
+  user: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || 'HiZptebvxrQOzhaSSMvJankEImWEbujP',
+  database: databaseName || 'mysql.railway.internal',
+  port: process.env.MYSQLPORT || 3306, 
   multipleStatements: true
 };
 
