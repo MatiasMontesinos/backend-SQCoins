@@ -9,7 +9,7 @@ const cors = require('cors');
 
 // Configura CORS para permitir el acceso desde el frontend
 const corsOptions = {
-  origin: 'https://frontend-tu-app.railway.app', // Reemplaza con la URL pública de tu frontend
+  origin: 'https://frontend-sqcoins-production.up.railway.app/', // Reemplaza con la URL pública de tu frontend
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 };
