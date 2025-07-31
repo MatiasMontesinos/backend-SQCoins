@@ -2,21 +2,34 @@ const mysql = require('mysql2/promise');
 const fs = require('fs');
 const path = require('path');
 
-// Leer variables de entorno SIN valores por defecto
+// Detectar el nombre correcto de la base de datos
+const databaseName = process.env.MYSQL_DATABASE || process.env.MYSQLDATABASE;
+
+// Mostrar las variables de entorno para debug
+console.log('🔍 Variables de entorno recibidas:', {
+  MYSQLHOST: process.env.MYSQLHOST,
+  MYSQLUSER: process.env.MYSQLUSER,
+  MYSQLPASSWORD: process.env.MYSQLPASSWORD ? '********' : undefined,
+  MYSQL_DATABASE: process.env.MYSQL_DATABASE,
+  MYSQLDATABASE: process.env.MYSQLDATABASE,
+  MYSQLPORT: process.env.MYSQLPORT
+});
+
+// Configuración de conexión
 const dbConfig = {
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
-  database: process.env.MYSQL_DATABASE,  // Cambiado aquí
-  port: process.env.MYSQLPORT ? Number(process.env.MYSQLPORT) : 3306, // puerto por defecto 3306 si no definido
+  database: databaseName,
+  port: process.env.MYSQLPORT ? Number(process.env.MYSQLPORT) : 3306,
   multipleStatements: true
 };
 
-// Validar que las variables necesarias existan antes de intentar conectar
+// Validación de variables requeridas
 for (const [key, value] of Object.entries(dbConfig)) {
   if (!value) {
     console.error(`❌ La variable de entorno ${key} no está definida.`);
-    process.exit(1); // Salir con error para evitar conexión errónea
+    process.exit(1); // Detiene la app si falta algo
   }
 }
 
