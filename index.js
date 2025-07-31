@@ -5,6 +5,18 @@ const path = require('path');
 const session = require('express-session');
 const { initDb } = require('./db');
 
+const cors = require('cors');
+
+// Configura CORS para permitir el acceso desde el frontend
+const corsOptions = {
+  origin: 'https://frontend-tu-app.railway.app', // Reemplaza con la URL pública de tu frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions)); // Usar CORS en todas las rutas
+
+
 // Routers
 const perfilRoutes  = require('./perfil');
 const sorteosRoutes = require('./sorteos');
